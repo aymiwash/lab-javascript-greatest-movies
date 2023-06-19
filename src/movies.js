@@ -62,27 +62,27 @@ function turnHoursToMinutes(moviesArray) {
     moviesArray.forEach(movie => {
         let arrayOfDuration
         let durationInMinutes
-        if(movie.duration.includes('h')){
-            if(movie.duration.includes('min')){
+        if (movie.duration.includes('h')) {
+            if (movie.duration.includes('min')) {
                 arrayOfDuration = movie.duration.slice(0, -3).split('h ')
                 durationInMinutes = parseInt(arrayOfDuration[0]) * 60 + parseInt(arrayOfDuration[1])
-            }else{
+            } else {
                 arrayOfDuration = movie.duration.split('h ')
-            durationInMinutes = parseInt(arrayOfDuration[0]) * 60
-            }   
+                durationInMinutes = parseInt(arrayOfDuration[0]) * 60
+            }
         }
-        if(movie.duration.includes("min")){
+        if (movie.duration.includes("min") && !movie.duration.includes('h')) {
             arrayOfDuration = movie.duration.slice(0, -3)
             durationInMinutes = parseInt(arrayOfDuration)
         }
 
         const newMovieObj = {
-                title: movie.title,
-                year: movie.year,
-                director: movie.director,
-                duration: durationInMinutes,
-                genre: movie.genre,
-                score: movie.score,
+            title: movie.title,
+            year: movie.year,
+            director: movie.director,
+            duration: durationInMinutes,
+            genre: movie.genre,
+            score: movie.score,
         }
         movieWithDurationInMin.push(newMovieObj)
     });
@@ -90,18 +90,14 @@ function turnHoursToMinutes(moviesArray) {
 }
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg(moviesArray) { }
+function bestYearAvg(moviesArray) {
+    const arrayOfAllYears = []
+    moviesArray.forEach(function (movie) {
+        if (!arrayOfAllYears.includes(movie.year)) {
+            arrayOfAllYears.push(movie.year)
+        }
+    })
+    //console.log(arrayOfAllYears)
 
+}
 
-
-/*let blabla ="2min"
-blabla.slice(0, -3)
-console.log(blabla.slice(0, -3));
-
-moviesArray.map(movie => {
-    const arrayOfDuration = movie.duration.split('h ').join(' ').slice(0, -3).split(" ")
-    const hoursInMinutes = parseInt(arrayOfDuration[0]) * 60
-    const durationInMinutes = hoursInMinutes + parseInt(arrayOfDuration[1])
-   // console.log(durationInMinutes);
-    movie.duration = durationInMinutes
-});*/
